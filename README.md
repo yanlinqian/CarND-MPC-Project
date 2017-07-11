@@ -1,6 +1,35 @@
 # CarND-Controls-MPC
 Self-Driving Car Engineer Nanodegree Program
 
+## Introduction
+This projects aims to provide my answer to the MPC project of Udacity SDCND. The MPC project includes two processing units -- the provided simulator (S) and the MPC algorithm (M). S sends out telemetry statistics (car position, velocity and heading) and some track waypoint data to M. After receiving the data from M and considering vehicle's motion model and vehicle's motion constraints, M send back actuator controls to S.
+
+## Rubric points
+- **The Model**: *Student describes their model in detail. This includes the state, actuators and update equations.*
+
+The model state covers 6 elements: the car's x and y coordinates, the car's orientation angle (psi), the car's velocity, the cross-track error (cte) and psi error (epsi).
+
+The model acturators cover 2 elements: the car's acceleration (a) and steering angle (delta).
+
+The update equations are listed below:
+
+![equations](./eqns.png)
+
+
+- **Timestep Length and Elapsed Duration (N & dt)**: *Student discusses the reasoning behind the chosen N (timestep length) and dt (elapsed duration between timesteps) values. Additionally the student details the previous values tried.*
+
+The Udacity course suggested that N and dt can be 10 and 0.1, which means the MPC algorithm makes a decision of driving trajectory in 1 second duration (10 * 0.1). We also tried other pairs, for example, (50,0.1), (20,0.1) (10,0.5), (10,0.2) and (20,0.05). However, none of these performs better than (10,0.1).
+
+
+- **Polynomial Fitting and MPC Preprocessing**: *A polynomial is fitted to waypoints. If the student preprocesses waypoints, the vehicle state, and/or actuators prior to the MPC procedure it is described.*
+
+The waypoints need to be preprocessed for easier polynomial fitting. This is implemented by transfroming the waypoints from map coordinate system to the car-centered coordinate system. Please check the main.cpp lines 105-110.
+
+- **Model Predictive Control with Latency**: *The student implements Model Predictive Control that handles a 100 millisecond latency. Student provides details on how they deal with latency.*
+
+The 100-ms-long control latency means the actuations are taken into action 100 ms later. In other words, actuations at T will be applied at T+100ms, so as actuations at T-100ms applied at T. Thus, some changes are made to actuations assignments (please check the code MPC.cpp lines 94-97).
+
+
 ---
 
 ## Dependencies
