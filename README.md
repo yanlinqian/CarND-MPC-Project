@@ -27,11 +27,11 @@ The waypoints need to be preprocessed for easier polynomial fitting. This is imp
 
 - **Model Predictive Control with Latency**: *The student implements Model Predictive Control that handles a 100 millisecond latency. Student provides details on how they deal with latency.*
 
-The 100-ms-long control latency means the actuations are taken into action 100 ms later. In other words, actuations at T will be applied at T+100ms, so as actuations at T-100ms applied at T. Thus, some changes are made to actuations assignments (please check the code MPC.cpp lines 94-97).
+The 100-ms-long control latency means the actuations are taken into action 100 ms later. In other words, actuations at T will be applied at T+100ms. Thus, some changes are made to actuations assignments: instead of taking solution index 0 from MPC, I take index-i instead where matches the time after 0.1s. (please check the code MPC.cpp lines 103-108). 
 
 ## Simulation Video
 
-A 3-min-long recorded video (record_video_480p.mov) of the simulation is released in youtube (https://youtu.be/I2JnAGL4Crc) for evaluation. In my own laptop, the car runs safely for 20 minutes. Hope this video is illustrative.
+A 2-min-long recorded video (record_video_480p.mov) of the simulation is released in youtube (https://youtu.be/tS3KRZFytHU) for evaluation. In my own laptop, the car runs safely for 20 minutes. Hope this video is illustrative.
 
 ---
 
